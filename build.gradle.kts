@@ -11,6 +11,8 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor("org.projectlombok:lombok:1.18.12")//без этого не будет работать lombok
+    implementation ("org.projectlombok:lombok:1.18.12")
     testImplementation(group="org.junit.jupiter", name="junit-jupiter-engine", version="5.6.2")
     testImplementation("org.mockito:mockito-core:3.1.0")
 }
