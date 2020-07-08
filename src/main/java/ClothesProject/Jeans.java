@@ -18,6 +18,9 @@ public class Jeans extends Clothes {
 
     }
 
+    public Jeans(int id, int price, int size, String article, String color, String material) {
+    }
+
     public int getWaist() {
         return waist;
     }
