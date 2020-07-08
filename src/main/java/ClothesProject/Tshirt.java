@@ -1,7 +1,13 @@
 package ClothesProject;
 
-import java.util.Objects;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+import java.util.Objects;
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class Tshirt extends Clothes{
     private int chest;
 
@@ -18,6 +24,9 @@ public class Tshirt extends Clothes{
         super(price, size, article, color);
         this.chest = chest;
 
+    }
+
+    public Tshirt(int id, int price, int size, String article, String color, String material) {
     }
 
 
