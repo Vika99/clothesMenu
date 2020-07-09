@@ -30,7 +30,7 @@ public class DBMain {
         }*/
 
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk99");
              //System.out.println(connection);
 
              Statement statement = connection.createStatement();
