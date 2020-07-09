@@ -11,6 +11,9 @@ import java.util.Objects;
 public class Tshirt extends Clothes{
     private int chest;
 
+    private String tshirt;
+
+
     public Tshirt() {
     } // конструктор по умолчанию
 
@@ -26,7 +29,10 @@ public class Tshirt extends Clothes{
 
     }
 
-    public Tshirt(int id, int price, int size, String article, String color, String material) {
+
+    public Tshirt(int id, int price, int size, String article, String color, String tshirt) {
+        super(id,price,size,article,color);
+        this.tshirt=tshirt;
     }
 
 

@@ -1,9 +1,19 @@
 package ClothesProject;
 
-import java.util.Objects;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+import java.util.Objects;
+@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class Jeans extends Clothes {
     private int waist;
+
+
+    private String jeans;
+
 
     public Jeans() {
     } // конструктор по умолчанию
@@ -12,13 +22,20 @@ public class Jeans extends Clothes {
         super(price, size, article, color);
     }
 
+
+
     public Jeans(int price, int size, String article, String color, int waist) {
         super(price, size, article, color);
         this.waist = waist;
 
     }
 
-    public Jeans(int id, int price, int size, String article, String color, String material) {
+
+
+
+    public Jeans(int id, int price, int size, String article, String color, String jeans) {
+        super(id,price,size,article,color);
+        this.jeans=jeans;
     }
 
     public int getWaist() {

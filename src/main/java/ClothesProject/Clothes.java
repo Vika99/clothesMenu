@@ -9,6 +9,12 @@ public class Clothes <E extends Clothes<E>>implements Comparable<Clothes<?>>, Se
     private String article;
     private String color;
 
+
+
+    public Clothes(int id, int price, int size, String article, String color) {
+    }
+
+
     @Override
     public int compareTo(Clothes o) {
         if (price>o.getPrice()){

@@ -5,29 +5,43 @@ import ClothesProject.Jeans;
 import ClothesProject.Tshirt;
 import lombok.SneakyThrows;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class DBMain {
     @SneakyThrows
     public static void main(String[] args) {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
+
+        /*try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk");
+             //System.out.println(connection);
+             PreparedStatement preparedStatement = connection.prepareStatement( "insert into user (login, type) values (?, 't')")) {
+
+            Clothes ClothesToSave = new Clothes(null,50,34,"ert4","red");
+
+            preparedStatement.setString(1, ClothesToSave.getPrice(),ClothesToSave.getSize(),ClothesToSave.getArticle(),ClothesToSave.getColor());
+            int count = preparedStatement.executeUpdate();
+
+            System.out.println(count);
+
+        }*/
+
+
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk");
              //System.out.println(connection);
 
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("select * from complex_clothes")) {// ВЫПОЛНИМ ЗАПРОС
+             ResultSet resultSet = statement.executeQuery("select * from complex_clothes")) {// ВЫПОЛНИМ ЗАПРОС для выборки данных
+            //executeUpdate -для внесения изменений данных
 
 
-            List <Clothes> complex_clothes = new ArrayList<>();
+            List <Clothes> clothes = new ArrayList<>();
             while (resultSet.next()) {
 
-                complex_clothes.add(parseClothes(resultSet));
+                clothes.add(parseClothes(resultSet));
 
 
             }
@@ -48,7 +62,6 @@ public class DBMain {
         int size = resultSet.getInt("size");
         String article = resultSet.getString("article");
         String color = resultSet.getString("color");
-        String material = resultSet.getString("material");
         String type = resultSet.getString("type");
 
         Clothes result;
@@ -57,12 +70,12 @@ public class DBMain {
             case "j": {
 
                 String jeans = resultSet.getString("jeans_t");
-                result = new Jeans(id, price, size, article, color, material);
+                result = new Jeans(id, price, size, article, color,jeans);
                 break;
             }
             case "t": {
                 String tshirt = resultSet.getString("tshirt_t");
-                result = new Tshirt(id, price, size, article, color, material);
+                result = new Tshirt(id, price, size, article, color,tshirt);
                 break;
             }
             default:
