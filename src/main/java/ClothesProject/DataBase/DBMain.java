@@ -16,13 +16,18 @@ public class DBMain {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        /*try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk");
+       /* try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk99");
              //System.out.println(connection);
-             PreparedStatement preparedStatement = connection.prepareStatement( "insert into user (login, type) values (?, 't')")) {
+             PreparedStatement preparedStatement = connection.prepareStatement( "insert into complex_clothes (price,size,article,color, type) values (?,?,?,?, 't')")) {
 
-            Clothes ClothesToSave = new Clothes(null,50,34,"ert4","red");
+            Clothes ClothesToSave = new Clothes(0,50,34,"ert4","red");
 
-            preparedStatement.setString(1, ClothesToSave.getPrice(),ClothesToSave.getSize(),ClothesToSave.getArticle(),ClothesToSave.getColor());
+
+            preparedStatement.setInt(1,ClothesToSave.getPrice());
+            preparedStatement.setInt(2,ClothesToSave.getSize());
+            preparedStatement.setString(3,ClothesToSave.getArticle());
+            preparedStatement.setString(4,ClothesToSave.getColor());
+
             int count = preparedStatement.executeUpdate();
 
             System.out.println(count);
@@ -46,7 +51,7 @@ public class DBMain {
 
             }
 
-            System.out.println(resultSet);
+            clothes.forEach(System.out::println);
         }
         /*resultSet.close();
         statement.close();
