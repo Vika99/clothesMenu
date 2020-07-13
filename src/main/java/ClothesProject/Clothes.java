@@ -8,10 +8,16 @@ public class Clothes <E extends Clothes<E>>implements Comparable<Clothes<?>>, Se
     private int size;
     private String article;
     private String color;
+    private int id;
 
 
 
     public Clothes(int id, int price, int size, String article, String color) {
+        this.id=id;
+        this.price=price;
+        this.size=size;
+        this.article=article;
+        this.color=color;
     }
 
 
