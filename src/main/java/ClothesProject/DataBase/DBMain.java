@@ -16,7 +16,7 @@ public class DBMain {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-       /* try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk99");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk99");
              //System.out.println(connection);
              PreparedStatement preparedStatement = connection.prepareStatement( "insert into complex_clothes (price,size,article,color, type) values (?,?,?,?, 't')")) {
 
@@ -32,7 +32,7 @@ public class DBMain {
 
             System.out.println(count);
 
-        }*/
+        }
 
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk99");
