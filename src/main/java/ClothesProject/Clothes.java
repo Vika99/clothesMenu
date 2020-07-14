@@ -1,14 +1,23 @@
 package ClothesProject;
 
-import java.io.Serializable;
+import ClothesProject.DataBase.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-public class Clothes <E extends Clothes<E>>implements Comparable<Clothes<?>>, Serializable {
+import java.io.Serializable;
+@Data
+@AllArgsConstructor
+
+public  class Clothes <E extends Clothes<E>>implements Comparable<Clothes<?>>, Serializable , IEntity {
     private int price;
     private String material;
     private int size;
     private String article;
     private String color;
-    private int id;
+
+    @JsonIgnore
+    private Integer id;
 
 
 

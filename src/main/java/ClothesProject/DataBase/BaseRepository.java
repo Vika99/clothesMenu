@@ -5,29 +5,38 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
 @RequiredArgsConstructor
-public class BaseRepository <E> implements Container<E> {
+public abstract class BaseRepository <E extends IEntity> implements Container<E> {
 
 
     private final ConnectionManager manager;
+    private final RowMapper<E> mapper;
+
+
+    protected abstract String getTableName();//получим табличку нужную и создаем отдельный репозиторий
 
     @Override
-    public int size() {
-        manager.workWithConnection(new Consumer<Connection>() {
-            @SneakyThrows
-            @Override
-            public void accept(Connection connection) {
-                try(Statement statement=connection.createStatement()){
-                    statement.executeQuery("select count(*) from");
-                }
+    public int size() { //количесто элементов в контейнере
+        AtomicInteger result = new AtomicInteger(0);
 
+        manager.workWithConnection(connection -> {
+            try(Statement statement=connection.createStatement()){
+                ResultSet resultSet = statement.executeQuery("select count(*) from" + getTableName());{
+                   resultSet.next();
+                    result.set(resultSet.getInt(1));
+                }
             }
+
         });
-        return 0;
+        return result.get();
     }
 
     @Override
@@ -47,7 +56,19 @@ public class BaseRepository <E> implements Container<E> {
 
     @Override
     public Collection<E> getAll() {
-        return null;
+        List<E> result = new ArrayList<>();
+        manager.workWithConnection(connection -> {
+            try (Statement statement =connection.createStatement();
+            ResultSet resultSet=statement.executeQuery("select count(*) from " + getTableName())){
+
+            while(resultSet.next())    {
+                E element = mapper.mapRow(resultSet);// вызываем метод преобразования и получаем какой-то результат
+             result.add(element);
+            }
+            }
+
+        });
+        return result;
     }
 
     @Override

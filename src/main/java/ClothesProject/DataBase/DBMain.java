@@ -18,7 +18,7 @@ public class DBMain {
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/clothes?serverTimezone=UTC", "root", "sasha_voronchuk99");
              //System.out.println(connection);
-             PreparedStatement preparedStatement = connection.prepareStatement( "insert into complex_clothes (price,size,article,color, type) values (?,?,?,?, 't')")) {
+             PreparedStatement preparedStatement = connection.prepareStatement( "insert into complex_clothes (price,size,article,color, type) values (?,?,?,? 't')")) {
 
             Clothes ClothesToSave = new Clothes(0,50,34,"ert4","red");
 

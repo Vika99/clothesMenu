@@ -11,7 +11,7 @@ public class ConnectionManager {
     //Для установления связи используем данный класс
 
     @SneakyThrows
-    public void workWithConnection(Consumer<Connection> connectionConsumer) {
+    public void workWithConnection(ThrowableConsumer<Connection> connectionConsumer) {
         //передадим интерфейс consumer
         Class.forName("com.mysql.cj.jdbc.Driver");
 
