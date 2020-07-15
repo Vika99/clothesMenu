@@ -59,7 +59,7 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
         List<E> result = new ArrayList<>();
         manager.workWithConnection(connection -> {
             try (Statement statement =connection.createStatement();
-            ResultSet resultSet=statement.executeQuery("select count(*) from " + getTableName())){
+            ResultSet resultSet=statement.executeQuery("select * from " + getTableName())){
 
             while(resultSet.next())    {
                 E element = mapper.mapRow(resultSet);// вызываем метод преобразования и получаем какой-то результат
