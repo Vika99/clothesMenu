@@ -4,14 +4,12 @@ import ClothesProject.NotSimpleMenu.Container;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Consumer;
 
 @RequiredArgsConstructor
 public abstract class BaseRepository <E extends IEntity> implements Container<E> {
@@ -40,9 +38,20 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     }
 
     @Override
+    @SneakyThrows
     public void add(E element) {
-
+        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+        manager.workWithConnection(connection -> {
+            try (PreparedStatement st = connection.prepareStatement("insert into complex_clothes (price,size,article,color) values (?,?,?,?)")) {
+             st.setString(1,"size");
+             st.setString(2,"price");
+             st.setString(3,"article");
+             st.setString(4,"color");
+            }
+        });
     }
+
+
 
     @Override
     public void set(int index, E element) {
@@ -50,10 +59,18 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     }
 
     @Override
+
     public void delete(int index) {
+        manager.workWithConnection(connection -> {
+            try (PreparedStatement st = connection.prepareStatement("DELETE FROM * WHERE id = ?")) {
+                st.setInt(1, index);
+                st.executeUpdate();
+            }
+
+
+        });
 
     }
-
     @Override
     public Collection<E> getAll() {
         List<E> result = new ArrayList<>();
@@ -75,4 +92,5 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     public void printAll() {
 
     }
+
 }

@@ -13,5 +13,6 @@ public class MainWithRepositoryDB {
 
         System.out.println(clothesRepository.size());
         System.out.println(clothesRepository.getAll());
+
     }
 }
