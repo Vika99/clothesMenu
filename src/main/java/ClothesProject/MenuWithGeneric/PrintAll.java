@@ -6,7 +6,7 @@ import ClothesProject.NotSimpleMenu.Container;
 public class PrintAll <T extends Comparable<T>> implements MenuItem<T> {
     private Container<T> container;
 
-    public PrintAll(Container<Clothes<?>> container)
+    public PrintAll(Container<T> container)
 
     {
         this.container =  container;

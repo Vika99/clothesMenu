@@ -16,16 +16,14 @@ public class MainWithRepositoryDB {
         ClothesRepository clothesRepository = new ClothesRepository(manager,clothesMapper);
 
 
-        Factory<Clothes<?>> clothesFactory = new ClothesFactory();
-        MenuItem<Clothes<?>>[] clothesItems = new MenuItem[3];
-        clothesItems[0]= new AddMenuItem<Clothes<?>>(clothesRepository,clothesFactory);
-        clothesItems[1]= new DeleteMenuItem<Clothes<?>>(clothesRepository);
-        clothesItems[2]= new PrintAll<Clothes<?>>(clothesRepository);
+        Factory<?> clothesFactory = new ClothesFactory();
+        MenuItem<?>[] clothesItems = new MenuItem[3];
+        clothesItems[0]= new AddMenuItem<>(clothesRepository,clothesFactory);
+        clothesItems[1]= new DeleteMenuItem<>(clothesRepository);
+        clothesItems[2]= new PrintAll<>(clothesRepository);
 
-        TopLevelMenu<Clothes<?>> clothesMenu = new TopLevelMenu<>(clothesItems,"clothes",1);
+        TopLevelMenu<?> clothesMenu = new TopLevelMenu<?>(clothesItems,"clothes",1);
          clothesMenu.run();
-
-
 
 
 

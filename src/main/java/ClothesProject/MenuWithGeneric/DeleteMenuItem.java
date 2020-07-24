@@ -9,7 +9,7 @@ public class DeleteMenuItem <T> implements MenuItem<T>{
     private Container<T> container;
     private Scanner sc = new Scanner(System.in);
 
-    public DeleteMenuItem(Container<Clothes<?>> container) {
+    public DeleteMenuItem(Container<T> container) {
         this.container = container;
     }
 

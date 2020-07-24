@@ -8,7 +8,7 @@ public class AddMenuItem  <T>implements MenuItem <T>{
     private Container<T> container;
     private Factory<T> factory;
 
-    public AddMenuItem(Container<Clothes<?>> container, Factory<Clothes<?>> factory) {
+    public AddMenuItem(Container<T> container, Factory<T> factory) {
         this.container =  container;
         this.factory = factory;
     }
