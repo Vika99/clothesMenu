@@ -1,5 +1,6 @@
 package ClothesProject.MenuWithGeneric;
 
+import ClothesProject.Clothes;
 import ClothesProject.NotSimpleMenu.Container;
 
 import java.util.Scanner;
@@ -8,7 +9,7 @@ public class DeleteMenuItem <T> implements MenuItem<T>{
     private Container<T> container;
     private Scanner sc = new Scanner(System.in);
 
-    public DeleteMenuItem(Container<T> container) {
+    public DeleteMenuItem(Container<Clothes<?>> container) {
         this.container = container;
     }
 

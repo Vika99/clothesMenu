@@ -1,5 +1,6 @@
 package ClothesProject.MenuWithGeneric;
 
+import ClothesProject.Clothes;
 import ClothesProject.Factory;
 import ClothesProject.NotSimpleMenu.Container;
 
@@ -7,7 +8,7 @@ public class AddMenuItem  <T>implements MenuItem <T>{
     private Container<T> container;
     private Factory<T> factory;
 
-    public AddMenuItem(Container<T> container, Factory<T> factory) {
+    public AddMenuItem(Container<Clothes<?>> container, Factory<Clothes<?>> factory) {
         this.container =  container;
         this.factory = factory;
     }

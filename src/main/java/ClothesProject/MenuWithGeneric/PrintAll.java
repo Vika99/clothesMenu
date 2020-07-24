@@ -1,11 +1,12 @@
 package ClothesProject.MenuWithGeneric;
 
+import ClothesProject.Clothes;
 import ClothesProject.NotSimpleMenu.Container;
 
 public class PrintAll <T extends Comparable<T>> implements MenuItem<T> {
     private Container<T> container;
 
-    public PrintAll(Container<T> container)
+    public PrintAll(Container<Clothes<?>> container)
 
     {
         this.container =  container;

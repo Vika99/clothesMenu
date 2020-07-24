@@ -21,7 +21,7 @@ public  class Clothes <E extends Clothes<E>>implements Comparable<Clothes<?>>, S
 
 
 
-    public Clothes(int id, int price, int size, String article, String color) {
+    public Clothes(Integer id, int price, int size, String article, String color) {
         this.id=id;
         this.price=price;
         this.size=size;

@@ -40,18 +40,24 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     @Override
     @SneakyThrows
     public void add(E element) {
-        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
         manager.workWithConnection(connection -> {
-            try (PreparedStatement st = connection.prepareStatement("insert into complex_clothes (price,size,article,color) values (?,?,?,?)")) {
-             st.setString(1,"size");
-             st.setString(2,"price");
-             st.setString(3,"article");
-             st.setString(4,"color");
+            try (PreparedStatement statement = createInsertStatement(connection,element)){
+
+                statement.executeUpdate();
+                ResultSet resultSet = statement.getGeneratedKeys();
+                if (resultSet.next()){
+                    int id = resultSet.getInt(1);
+                    element.setId(id);
+                }
             }
         });
+
+
+
+
     }
 
-
+    protected abstract PreparedStatement createInsertStatement(Connection connection,E element) throws  SQLException;//БУДЕМ ОТДАВАТЬ РЕАЛИЗАЦИЮ В КЛАССЫ НАСЛЕДНИКИ
 
     @Override
     public void set(int index, E element) {

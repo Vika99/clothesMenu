@@ -33,7 +33,7 @@ public class Jeans extends Clothes {
 
 
 
-    public Jeans(int id, int price, int size, String article, String color, String jeans) {
+    public Jeans(Integer id, int price, int size, String article, String color, String jeans) {
         super(id,price,size,article,color);
         this.jeans=jeans;
     }
