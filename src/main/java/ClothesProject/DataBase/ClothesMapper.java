@@ -4,9 +4,10 @@ import ClothesProject.Clothes;
 import ClothesProject.Jeans;
 import ClothesProject.Tshirt;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
-
+@Component
 public class ClothesMapper implements  RowMapper<Clothes> {
 
     @Override

@@ -3,9 +3,10 @@ package ClothesProject.DataBase;
 import ClothesProject.Clothes;
 import ClothesProject.Jeans;
 import ClothesProject.Tshirt;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
-
+@Component
 public class ClothesRepository extends BaseRepository<Clothes> {
 
     public ClothesRepository(ConnectionManager manager, RowMapper<Clothes> clothesRowMapper) {

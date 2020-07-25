@@ -2,6 +2,8 @@ package ClothesProject;
 
 import ClothesProject.NotSimpleMenu.ScannerWrapper;
 
+
+
 public class ClothesFactory implements Factory<Clothes<?>>{
     //private Scanner sc = new Scanner(System.in);
     private ScannerWrapper sc = new ScannerWrapper();
