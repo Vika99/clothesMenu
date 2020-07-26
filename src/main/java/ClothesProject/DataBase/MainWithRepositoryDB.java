@@ -18,12 +18,12 @@ public class MainWithRepositoryDB {
 
         Factory<?> clothesFactory = new ClothesFactory();
         MenuItem<?>[] clothesItems = new MenuItem[3];
-        clothesItems[0]= new AddMenuItem<>(clothesRepository,clothesFactory);
+        //clothesItems[0]= new AddMenuItem<>(clothesRepository,clothesFactory);
         clothesItems[1]= new DeleteMenuItem<>(clothesRepository);
         clothesItems[2]= new PrintAll<>(clothesRepository);
 
-       TopLevelMenu<?> clothesMenu = new TopLevelMenu<>(clothesItems,"clothes",1);
-        clothesMenu.run();
+      //  TopLevelMenu<?> clothesMenu = new TopLevelMenu<>(clothesItems,"clothes",1);
+       //  clothesMenu.run();
 
 
 

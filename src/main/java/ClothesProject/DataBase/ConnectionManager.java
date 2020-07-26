@@ -11,13 +11,13 @@ import java.util.function.Consumer;
 public class ConnectionManager {
 
 
-    @Value("dburl")
+    @Value("${dburl}")
     private String url;
 
-    @Value("dbuser")
+    @Value("${dbuser}")
     private String user;
 
-    @Value("dbpassword")
+    @Value("${dbpassword}")
     private String password;
 
 
