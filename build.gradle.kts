@@ -17,6 +17,13 @@ dependencies {
     implementation ("com.fasterxml.jackson.core:jackson-core:2.11.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
 
+    implementation ("org.springframework:spring-core:5.2.8.RELEASE")
+    implementation("org.springframework:spring-beans:5.2.8.RELEASE")
+    implementation("org.springframework:spring-context:5.2.8.RELEASE")
+    implementation("org.springframework:spring-jdbc:5.2.8.RELEASE")
+
+
+
     runtimeOnly("mysql:mysql-connector-java:8.0.20")
 
     testImplementation(group="org.junit.jupiter", name="junit-jupiter-engine", version="5.6.2")
