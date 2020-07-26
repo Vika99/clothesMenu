@@ -12,7 +12,7 @@ public class ClothesMapper implements  RowMapper<Clothes> {
 
     @Override
     @SneakyThrows
-    public Clothes mapRow(ResultSet resultSet) {
+    public Clothes mapRow(ResultSet resultSet, int row) {
         int id = resultSet.getInt("id");
         int price = resultSet.getInt("price");
         int size = resultSet.getInt("size");

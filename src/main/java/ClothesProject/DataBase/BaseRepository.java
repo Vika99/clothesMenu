@@ -85,7 +85,7 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
             ResultSet resultSet=statement.executeQuery("select * from " + getTableName())){
 
             while(resultSet.next())    {
-                E element = mapper.mapRow(resultSet);// вызываем метод преобразования и получаем какой-то результат
+                E element = mapper.mapRow(resultSet,0);// вызываем метод преобразования и получаем какой-то результат
              result.add(element);
             }
             }
