@@ -1,5 +1,7 @@
 package ClothesProject.MenuWithGeneric;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
 
 public class GenericContainer <T>  {

@@ -5,6 +5,10 @@ import ClothesProject.ClothesFactory;
 import ClothesProject.DataBase.ClothesRepository;
 import ClothesProject.DataBase.ConnectionManager;
 import ClothesProject.DataBase.RowMapper;
+import ClothesProject.MenuWithGeneric.ClothesGenericContainer;
+import ClothesProject.MenuWithGeneric.GenericContainer;
+import ClothesProject.MenuWithGeneric.MainMenuGeneric;
+import ClothesProject.MenuWithGeneric.TopLevelMenu;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -52,5 +56,19 @@ public JdbcTemplate jdbcTemplate (DataSource dataSource){
             return new ClothesRepository(manager,mapper);
         }
 
+     @Bean
+    public ClothesGenericContainer clothesGenericContainer(){
+        return  new ClothesGenericContainer();
+     }
+
+     @Bean
+    public GenericContainer genericContainer(){
+        return new GenericContainer();
+     }
+
+     @Bean
+    public TopLevelMenu topLevelMenu(){
+        return new TopLevelMenu();
+     }
 
 }

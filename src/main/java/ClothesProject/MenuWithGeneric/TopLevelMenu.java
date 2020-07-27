@@ -1,9 +1,11 @@
 package ClothesProject.MenuWithGeneric;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
-
+@Component
 public class TopLevelMenu  <T> implements MenuItem <T> {
     private MenuItem<T>[] items;
     private Scanner sc = new Scanner(System.in);
@@ -20,6 +22,10 @@ public class TopLevelMenu  <T> implements MenuItem <T> {
         this.items = items;
         this.title = title;
         this.order = order;
+
+    }
+
+    public TopLevelMenu() {
 
     }
 

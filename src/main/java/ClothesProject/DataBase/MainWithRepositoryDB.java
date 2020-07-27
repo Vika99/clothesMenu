@@ -5,8 +5,9 @@ import ClothesProject.ClothesFactory;
 import ClothesProject.Factory;
 import ClothesProject.MenuWithGeneric.*;
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class MainWithRepositoryDB  {
 
     @SneakyThrows

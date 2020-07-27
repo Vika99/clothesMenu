@@ -2,7 +2,9 @@ package ClothesProject.MenuWithGeneric;
 
 import ClothesProject.Clothes;
 import ClothesProject.NotSimpleMenu.Container;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PrintAll <T extends Comparable<T>> implements MenuItem<T> {
     private Container<T> container;
 

@@ -5,9 +5,11 @@ import ClothesProject.ClothesFactory;
 import ClothesProject.Factory;
 import ClothesProject.NetWork.NetworkClientContainer;
 import ClothesProject.NotSimpleMenu.Container;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class MainMenuGeneric {
     public static void main(String[] args) throws IOException {
         Factory<Clothes<?>> factory = new ClothesFactory();
