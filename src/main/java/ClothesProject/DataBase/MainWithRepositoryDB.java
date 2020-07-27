@@ -6,24 +6,24 @@ import ClothesProject.Factory;
 import ClothesProject.MenuWithGeneric.*;
 import lombok.SneakyThrows;
 
-public class MainWithRepositoryDB {
+
+public class MainWithRepositoryDB  {
 
     @SneakyThrows
-    public static void main(String []args){
-
+    public static void main(String []args)  {
         ConnectionManager manager = new ConnectionManager();
         ClothesMapper clothesMapper = new ClothesMapper();
-        ClothesRepository clothesRepository = new ClothesRepository(manager,clothesMapper);
+        ClothesRepository clothesRepository = new ClothesRepository(manager, clothesMapper);
+
+        Factory<Clothes<?>> clothesFactory = new ClothesFactory();
+               MenuItem<Clothes<?>>[] clothesItems = new MenuItem[3];
+               clothesItems[0] = new AddMenuItem<>(clothesRepository, clothesFactory);
+               clothesItems[1] = new DeleteMenuItem<>(clothesRepository);
+               clothesItems[2] = new PrintAll<>(clothesRepository);
 
 
-        Factory<?> clothesFactory = new ClothesFactory();
-        MenuItem<?>[] clothesItems = new MenuItem[3];
-        //clothesItems[0]= new AddMenuItem<>(clothesRepository,clothesFactory);
-        clothesItems[1]= new DeleteMenuItem<>(clothesRepository);
-        clothesItems[2]= new PrintAll<>(clothesRepository);
-
-      //  TopLevelMenu<?> clothesMenu = new TopLevelMenu<>(clothesItems,"clothes",1);
-       //  clothesMenu.run();
+        TopLevelMenu<Clothes<?>> clothesMenu = new TopLevelMenu<>(clothesItems, "clothes", 1);
+         clothesMenu.run();
 
 
 

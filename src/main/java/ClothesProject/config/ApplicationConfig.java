@@ -48,7 +48,7 @@ public JdbcTemplate jdbcTemplate (DataSource dataSource){
         return new ClothesFactory();
     }
         @Bean
-         public ClothesRepository clothesRepository(ConnectionManager manager, RowMapper<Clothes> mapper){
+         public ClothesRepository clothesRepository(ConnectionManager manager, RowMapper<Clothes<?>> mapper){
             return new ClothesRepository(manager,mapper);
         }
 
