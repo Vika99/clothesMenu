@@ -1,11 +1,10 @@
 package ClothesProject.MenuWithGeneric;
-
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
-
 public class ClothesGenericContainer <T extends Comparable<T>> {
+
     private T[] array = (T[]) new Object[10];
     private int count = 0;
 

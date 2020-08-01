@@ -1,12 +1,9 @@
 package ClothesProject.MenuWithGeneric;
-
 import ClothesProject.Clothes;
 import ClothesProject.NotSimpleMenu.Container;
-import org.springframework.stereotype.Component;
-
 import java.util.Scanner;
 
-@Component
+
 public class DeleteMenuItem <T> implements MenuItem<T>{
     private Container<T> container;
     private Scanner sc = new Scanner(System.in);

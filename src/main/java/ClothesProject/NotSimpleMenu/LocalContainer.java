@@ -1,9 +1,12 @@
 package ClothesProject.NotSimpleMenu;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Component
 public class LocalContainer <T> implements Container <T>{
 
     private List<T> list= new ArrayList<>();

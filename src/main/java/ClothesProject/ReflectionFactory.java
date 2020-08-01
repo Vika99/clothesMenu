@@ -3,17 +3,13 @@ package ClothesProject;
 import ClothesProject.NotSimpleMenu.ScannerWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
+
 @RequiredArgsConstructor
 public class ReflectionFactory <T> implements Factory<T>{
     //private final List<Class<T>> classes;
     private final Class<T> aClass;
     private  final ScannerWrapper wrapper;
-
-
 
 @SneakyThrows
     public T create() {
@@ -26,14 +22,10 @@ public class ReflectionFactory <T> implements Factory<T>{
         String input = wrapper.nextLine();
         Object value = convert(field,input);
 
-
         field.setAccessible(true);
         field.set(instance,value);
 
-
     }
-
-
 
         return instance;
     }
@@ -49,10 +41,6 @@ public class ReflectionFactory <T> implements Factory<T>{
 
 
             // ПОПРОБОВАТЬ С МАССИВОМ ЕЩЕ!!!(НАДО СПРОСИТЬ, СКОЛЬКО ОБЪЕКТОВ  ОН ХОЧЕТ СОЗДАТЬ СООТВЕТСТ. ТИПА И ЗАПУСКАТЬ ФАБРИКУ.......
-
-
-
-
 
         }
         if (type.isEnum()){

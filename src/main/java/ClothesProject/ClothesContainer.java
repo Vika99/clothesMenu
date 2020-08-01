@@ -1,5 +1,9 @@
 package ClothesProject;
 
+
+import org.springframework.stereotype.Component;
+
+
 public class ClothesContainer {
     private Clothes[] array = new Clothes[10];
     private int count = 0;

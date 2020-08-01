@@ -1,10 +1,11 @@
 package ClothesProject;
 
 import ClothesProject.NotSimpleMenu.ScannerWrapper;
+import org.springframework.stereotype.Component;
 
 
-
-public class ClothesFactory implements Factory<Clothes<?>>{
+@Component
+public class ClothesFactory implements Factory<Clothes>{
     //private Scanner sc = new Scanner(System.in);
     private ScannerWrapper sc = new ScannerWrapper();
     public Clothes<?> create() {

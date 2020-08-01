@@ -1,11 +1,10 @@
 package ClothesProject.MenuWithGeneric;
-
 import ClothesProject.Clothes;
 import ClothesProject.Factory;
 import ClothesProject.NotSimpleMenu.Container;
-import org.springframework.stereotype.Component;
 
-@Component
+
+
 public class AddMenuItem  <T>implements MenuItem <T>{
     private Container<T> container;
     private Factory<T> factory;

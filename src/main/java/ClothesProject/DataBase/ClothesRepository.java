@@ -6,10 +6,10 @@ import ClothesProject.Tshirt;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
-@Component
-public class ClothesRepository extends BaseRepository<Clothes<?>> {
 
-    public ClothesRepository(ConnectionManager manager, RowMapper<Clothes<?>> clothesRowMapper) {
+public class ClothesRepository extends BaseRepository<Clothes> {
+
+    public ClothesRepository(ConnectionManager manager, RowMapper clothesRowMapper) {
         super(manager, clothesRowMapper);
     }
 

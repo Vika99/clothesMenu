@@ -1,7 +1,10 @@
 package ClothesProject.NotSimpleMenu;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class ScannerWrapper {
     private Scanner sc = new Scanner(System.in);
 

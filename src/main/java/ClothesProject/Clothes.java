@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 
-public  class Clothes <E extends Clothes<E>>implements Comparable<Clothes<?>>, Serializable , IEntity {
+public  class Clothes <E extends Clothes<E>>implements Comparable<Clothes>, Serializable , IEntity {
     private int price;
     private String material;
     private int size;

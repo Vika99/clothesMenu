@@ -17,22 +17,15 @@ public class SpringMain {
         ApplicationContext context =new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 
-        JdbcTemplate jdbcTemplate =context.getBean(JdbcTemplate.class);
+        /*JdbcTemplate jdbcTemplate =context.getBean(JdbcTemplate.class);
         RowMapper rowMapper = context.getBean(RowMapper.class);
         List<Clothes> clothes = jdbcTemplate.query("select * from complex_clothes", rowMapper);
         System.out.println(clothes);
 
-
         ClothesFactory clothesFactory= context.getBean(ClothesFactory.class);
-        clothesFactory.create();
+        clothesFactory.create();*/
 
-        ClothesRepository clothesRepository = context.getBean(ClothesRepository.class);
-        MenuItem<Clothes<?>>[] clothesItems = new MenuItem[3];
-        clothesItems[0] = new AddMenuItem<>(clothesRepository, clothesFactory);
-        clothesItems[1] = new DeleteMenuItem<>(clothesRepository);
-        clothesItems[2] = new PrintAll<>(clothesRepository);
-
-        TopLevelMenu topLevelMenu = context.getBean(TopLevelMenu.class,clothesItems,"clothes",1);
-        topLevelMenu.run();
+        TopLevelMenu<Clothes> menuItem = context.getBean(TopLevelMenu.class);
+        menuItem.run();
     }
 }
