@@ -1,0 +1,96 @@
+Index: src/main/java/ClothesProject/DataBase/MainWithRepositoryDB.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ClothesProject/DataBase/MainWithRepositoryDB.java	(revision 84556cdb95c8ec9259ed71a742903a7d5657a1a2)
++++ src/main/java/ClothesProject/DataBase/MainWithRepositoryDB.java	(date 1595838541987)
+@@ -9,26 +9,25 @@
+ public class MainWithRepositoryDB {
+ 
+     @SneakyThrows
+-    public static void main(String []args){
++    public static void main(String[] args) {
+ 
+         ConnectionManager manager = new ConnectionManager();
+         ClothesMapper clothesMapper = new ClothesMapper();
+-        ClothesRepository clothesRepository = new ClothesRepository(manager,clothesMapper);
++        ClothesRepository clothesRepository = new ClothesRepository(manager, clothesMapper);
+ 
+ 
+-        Factory<?> clothesFactory = new ClothesFactory();
+-        MenuItem<?>[] clothesItems = new MenuItem[3];
+-        //clothesItems[0]= new AddMenuItem<>(clothesRepository,clothesFactory);
+-        clothesItems[1]= new DeleteMenuItem<>(clothesRepository);
+-        clothesItems[2]= new PrintAll<>(clothesRepository);
++        Factory<Clothes<?>> clothesFactory = new ClothesFactory();
++        MenuItem<Clothes<?>>[] clothesItems = new MenuItem[3];
++        clothesItems[0] = new AddMenuItem<>(clothesRepository, clothesFactory);
++        clothesItems[1] = new DeleteMenuItem<>(clothesRepository);
++        clothesItems[2] = new PrintAll<>(clothesRepository);
+ 
+-      //  TopLevelMenu<?> clothesMenu = new TopLevelMenu<>(clothesItems,"clothes",1);
+-       //  clothesMenu.run();
+-
++        TopLevelMenu<Clothes<?>> clothesMenu = new TopLevelMenu<>(clothesItems, "clothes", 1);
++        clothesMenu.run();
+ 
+ 
+-       // System.out.println(clothesRepository.size());
+-       // System.out.println(clothesRepository.getAll());
++        // System.out.println(clothesRepository.size());
++        // System.out.println(clothesRepository.getAll());
+ 
+ 
+     }
+Index: src/main/java/ClothesProject/DataBase/ClothesMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ClothesProject/DataBase/ClothesMapper.java	(revision 84556cdb95c8ec9259ed71a742903a7d5657a1a2)
++++ src/main/java/ClothesProject/DataBase/ClothesMapper.java	(date 1595838456815)
+@@ -8,7 +8,7 @@
+ 
+ import java.sql.ResultSet;
+ @Component
+-public class ClothesMapper implements  RowMapper<Clothes> {
++public class ClothesMapper implements  RowMapper<Clothes<?>> {
+ 
+     @Override
+     @SneakyThrows
+Index: src/main/java/ClothesProject/DataBase/ClothesRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ClothesProject/DataBase/ClothesRepository.java	(revision 84556cdb95c8ec9259ed71a742903a7d5657a1a2)
++++ src/main/java/ClothesProject/DataBase/ClothesRepository.java	(date 1595838456812)
+@@ -7,9 +7,9 @@
+ 
+ import java.sql.*;
+ @Component
+-public class ClothesRepository extends BaseRepository<Clothes> {
++public class ClothesRepository extends BaseRepository<Clothes<?>> {
+ 
+-    public ClothesRepository(ConnectionManager manager, RowMapper<Clothes> clothesRowMapper) {
++    public ClothesRepository(ConnectionManager manager, RowMapper<Clothes<?>> clothesRowMapper) {
+         super(manager, clothesRowMapper);
+     }
+ 
+Index: src/main/java/ClothesProject/config/ApplicationConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ClothesProject/config/ApplicationConfig.java	(revision 84556cdb95c8ec9259ed71a742903a7d5657a1a2)
++++ src/main/java/ClothesProject/config/ApplicationConfig.java	(date 1595838472794)
+@@ -48,7 +48,7 @@
+         return new ClothesFactory();
+     }
+         @Bean
+-         public ClothesRepository clothesRepository(ConnectionManager manager, RowMapper<Clothes> mapper){
++         public ClothesRepository clothesRepository(ConnectionManager manager, RowMapper<Clothes<?>> mapper){
+             return new ClothesRepository(manager,mapper);
+         }
+ 
