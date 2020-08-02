@@ -21,6 +21,7 @@ dependencies {
     implementation("org.springframework:spring-beans:5.2.8.RELEASE")
     implementation("org.springframework:spring-context:5.2.8.RELEASE")
     implementation("org.springframework:spring-jdbc:5.2.8.RELEASE")
+    implementation("org.liquibase:liquibase-core:3.10.2")
 
 
 
