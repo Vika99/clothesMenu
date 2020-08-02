@@ -3,6 +3,7 @@ package ClothesProject.DataBase;
 import ClothesProject.NotSimpleMenu.Container;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import java.sql.*;
@@ -15,15 +16,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class BaseRepository <E extends IEntity> implements Container<E> {
 
 
-    private final ConnectionManager manager;
-    private final RowMapper<E> mapper;
+    protected final ConnectionManager manager;
+    protected final RowMapper<E> mapper;
+    protected final JdbcTemplate jdbcTemplate;
 
 
     protected abstract String getTableName();//получим табличку нужную и создаем отдельный репозиторий
 
     @Override
     public int size() { //количесто элементов в контейнере
-        AtomicInteger result = new AtomicInteger(0);
+
+        List<Integer> query = jdbcTemplate.query("select count(*) from" + getTableName(), (rs, rowNum) -> rs.getInt(1));
+        return query.stream().findFirst().orElse(0);
+
+    }
+
+        /*AtomicInteger result = new AtomicInteger(0);
 
         manager.workWithConnection(connection -> {
             try(Statement statement=connection.createStatement()){
@@ -34,8 +42,10 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
             }
 
         });
-        return result.get();
-    }
+        return result.get();*/
+
+
+
 
     @Override
     @SneakyThrows

@@ -3,15 +3,19 @@ package ClothesProject.DataBase;
 import ClothesProject.Clothes;
 import ClothesProject.Jeans;
 import ClothesProject.Tshirt;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
 
 public class ClothesRepository extends BaseRepository<Clothes> {
 
-    public ClothesRepository(ConnectionManager manager, RowMapper clothesRowMapper) {
-        super(manager, clothesRowMapper);
+    public ClothesRepository(ConnectionManager manager, JdbcTemplate jdbcTemplate, RowMapper<Clothes> clothesRowMapper) {
+        super(manager, clothesRowMapper, jdbcTemplate);
     }
+
+
+
 
     @Override
     protected String getTableName() {

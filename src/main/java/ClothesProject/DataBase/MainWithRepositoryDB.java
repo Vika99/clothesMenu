@@ -5,6 +5,7 @@ import ClothesProject.ClothesFactory;
 import ClothesProject.Factory;
 import ClothesProject.MenuWithGeneric.*;
 import lombok.SneakyThrows;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +15,8 @@ public class MainWithRepositoryDB  {
     public static void main(String []args)  {
         ConnectionManager manager = new ConnectionManager();
         ClothesMapper clothesMapper = new ClothesMapper();
-        ClothesRepository clothesRepository = new ClothesRepository(manager, clothesMapper);
+        JdbcTemplate jdbcTemplate=new JdbcTemplate();
+        ClothesRepository clothesRepository = new ClothesRepository(manager,jdbcTemplate ,clothesMapper);
 
         Factory<Clothes> clothesFactory = new ClothesFactory();
                MenuItem<Clothes>[] clothesItems = new MenuItem[3];

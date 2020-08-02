@@ -5,11 +5,14 @@ import ClothesProject.ClothesFactory;
 import ClothesProject.DataBase.ClothesRepository;
 import ClothesProject.DataBase.ConnectionManager;
 import ClothesProject.DataBase.RowMapper;
-import ClothesProject.MenuWithGeneric.ClothesGenericContainer;
-import ClothesProject.MenuWithGeneric.GenericContainer;
-import ClothesProject.MenuWithGeneric.MainMenuGeneric;
-import ClothesProject.MenuWithGeneric.TopLevelMenu;
+import ClothesProject.Factory;
+import ClothesProject.MenuWithGeneric.*;
+
+import ClothesProject.NotSimpleMenu.Container;
+import ClothesProject.NotSimpleMenu.ScannerWrapper;
+import liquibase.integration.spring.SpringLiquibase;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -49,27 +52,47 @@ public JdbcTemplate jdbcTemplate (DataSource dataSource){
 }
 
     @Bean
+    public SpringLiquibase springLiquibase(DataSource ds){
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setDataSource(ds);
+        liquibase.setChangeLog("classpath:db/changelog-master.xml");  //где лежат наши скрипты для базы
+
+        return liquibase;
+    }
+
+    @Bean
     public ClothesFactory clothesFactory() {
         return new ClothesFactory();
     }
-        @Bean
-         public ClothesRepository clothesRepository(ConnectionManager manager, RowMapper<Clothes<?>> mapper){
+       /* @Bean
+         public ClothesRepository clothesRepository(ConnectionManager manager, RowMapper mapper){
             return new ClothesRepository(manager,mapper);
-        }
+        }*/
+
+
+
 
      @Bean
-    public ClothesGenericContainer clothesGenericContainer(){
-        return  new ClothesGenericContainer();
+
+    public AddMenuItem<Clothes> clothesAddMenuItem( Container<Clothes> container, Factory<Clothes> factory){
+        return new AddMenuItem<>(container,factory);
+
      }
 
      @Bean
-    public GenericContainer genericContainer(){
-        return new GenericContainer();
+
+    public MenuItem<Clothes> clothesPrintAllMenuItem(Container<Clothes> container){
+        return new PrintAll<>(container);
      }
 
      @Bean
-    public TopLevelMenu topLevelMenu(){
-        return new TopLevelMenu();
+    public MenuItem<Clothes> clothesDeleteMenuItem(Container<Clothes> container){
+        return new DeleteMenuItem<>(container);
+     }
+
+     @Bean
+    public TopLevelMenu<Clothes> clothesTopLevelMenu(ScannerWrapper sc, List<MenuItem<Clothes>> items){
+        return new TopLevelMenu<>(sc,items,"clothes",1);
      }
 
 }
