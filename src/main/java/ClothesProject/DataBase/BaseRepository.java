@@ -10,7 +10,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @RequiredArgsConstructor
 public abstract class BaseRepository <E extends IEntity> implements Container<E> {
@@ -50,7 +49,11 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     @Override
     @SneakyThrows
     public void add(E element) {
-        manager.workWithConnection(connection -> {
+
+        List<E> update = jdbcTemplate.update("insert into (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)" + getTableName(), (rs, rowNum) -> rs.getInt(1));
+                return update;
+
+        /*manager.workWithConnection(connection -> {
             try (PreparedStatement statement = createInsertStatement(connection,element)){
 
                 statement.executeUpdate();
@@ -60,14 +63,14 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
                     element.setId(id);
                 }
             }
-        });
+        });*/
 
 
 
 
     }
 
-    protected abstract PreparedStatement createInsertStatement(Connection connection,E element) throws  SQLException;//БУДЕМ ОТДАВАТЬ РЕАЛИЗАЦИЮ В КЛАССЫ НАСЛЕДНИКИ
+    //protected abstract PreparedStatement createInsertStatement(Connection connection,E element) throws  SQLException;//БУДЕМ ОТДАВАТЬ РЕАЛИЗАЦИЮ В КЛАССЫ НАСЛЕДНИКИ
 
     @Override
     public void set(int index, E element) {
@@ -75,16 +78,20 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     }
 
     @Override
-
     public void delete(int index) {
-        manager.workWithConnection(connection -> {
+        int remove = jdbcTemplate.update("DELETE FROM * WHERE id = ?" + getTableName(),(rs, rowNum) -> rs.getInt(1));
+        return remove;
+
+
+
+
+
+        /*manager.workWithConnection(connection -> {
             try (PreparedStatement st = connection.prepareStatement("DELETE FROM * WHERE id = ?")) {
                 st.setInt(1, index);
                 st.executeUpdate();
             }
-
-
-        });
+        });*/
 
     }
     @Override
