@@ -50,13 +50,16 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     @SneakyThrows
     public void add(E element) {
 
+        this.jdbcTemplate.update("insert into complex_clothes (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?,?)", element);{
+              element.getPrice();
+              element.getSize();
+              element.getArticle();
+              element.getColor();
+              element.getType();
+              element.getJeans();
+              element.getTshirt();
 
-        this.jdbcTemplate.update("insert into complex_clothes (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)", element);
-
-
-
-
-
+        }
 
 
         /*manager.workWithConnection(connection -> {
@@ -86,8 +89,6 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     @Override
     public void delete(int index) {
          this.jdbcTemplate.update("DELETE FROM complex_clothes WHERE id = ?", index);
-
-
 
 
         /*manager.workWithConnection(connection -> {
