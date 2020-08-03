@@ -18,7 +18,7 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     protected final ConnectionManager manager;
     protected final RowMapper<E> mapper;
     protected final JdbcTemplate jdbcTemplate;
-
+    private static Statement stmt;
 
     protected abstract String getTableName();//получим табличку нужную и создаем отдельный репозиторий
 
@@ -50,8 +50,15 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     @SneakyThrows
     public void add(E element) {
 
+        //String query ="insert into complex_clothes (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)";
+       // stmt.executeUpdate(query);
+
         List<E> update = jdbcTemplate.update("insert into (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)" + getTableName(), (rs, rowNum) -> rs.getInt(1));
-                return update;
+        return update;
+
+
+
+
 
         /*manager.workWithConnection(connection -> {
             try (PreparedStatement statement = createInsertStatement(connection,element)){
@@ -70,7 +77,7 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
 
     }
 
-    //protected abstract PreparedStatement createInsertStatement(Connection connection,E element) throws  SQLException;//БУДЕМ ОТДАВАТЬ РЕАЛИЗАЦИЮ В КЛАССЫ НАСЛЕДНИКИ
+    protected abstract PreparedStatement createInsertStatement(Connection connection,E element) throws  SQLException;//БУДЕМ ОТДАВАТЬ РЕАЛИЗАЦИЮ В КЛАССЫ НАСЛЕДНИКИ
 
     @Override
     public void set(int index, E element) {
@@ -79,19 +86,19 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
 
     @Override
     public void delete(int index) {
-        int remove = jdbcTemplate.update("DELETE FROM * WHERE id = ?" + getTableName(),(rs, rowNum) -> rs.getInt(1));
-        return remove;
+        //int remove = jdbcTemplate.update("DELETE FROM * WHERE id = ?" + getTableName(),(rs, rowNum) -> rs.getInt(1));
+       // return remove;
 
 
 
 
 
-        /*manager.workWithConnection(connection -> {
+        manager.workWithConnection(connection -> {
             try (PreparedStatement st = connection.prepareStatement("DELETE FROM * WHERE id = ?")) {
                 st.setInt(1, index);
                 st.executeUpdate();
             }
-        });*/
+        });
 
     }
     @Override

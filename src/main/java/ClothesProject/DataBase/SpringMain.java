@@ -17,7 +17,7 @@ public class SpringMain {
         ApplicationContext context =new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
 
-        /*JdbcTemplate jdbcTemplate =context.getBean(JdbcTemplate.class);
+       /*JdbcTemplate jdbcTemplate =context.getBean(JdbcTemplate.class);
         RowMapper rowMapper = context.getBean(RowMapper.class);
         List<Clothes> clothes = jdbcTemplate.query("select * from complex_clothes", rowMapper);
         System.out.println(clothes);
