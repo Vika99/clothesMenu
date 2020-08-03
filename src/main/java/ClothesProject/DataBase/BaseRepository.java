@@ -50,11 +50,10 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
     @SneakyThrows
     public void add(E element) {
 
-        //String query ="insert into complex_clothes (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)";
-       // stmt.executeUpdate(query);
 
-        List<E> update = jdbcTemplate.update("insert into (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)" + getTableName(), (rs, rowNum) -> rs.getInt(1));
-        return update;
+        this.jdbcTemplate.update("insert into complex_clothes (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?)", element);
+
+
 
 
 
@@ -86,19 +85,17 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
 
     @Override
     public void delete(int index) {
-        //int remove = jdbcTemplate.update("DELETE FROM * WHERE id = ?" + getTableName(),(rs, rowNum) -> rs.getInt(1));
-       // return remove;
+         this.jdbcTemplate.update("DELETE FROM complex_clothes WHERE id = ?", index);
 
 
 
 
-
-        manager.workWithConnection(connection -> {
+        /*manager.workWithConnection(connection -> {
             try (PreparedStatement st = connection.prepareStatement("DELETE FROM * WHERE id = ?")) {
                 st.setInt(1, index);
                 st.executeUpdate();
             }
-        });
+        });*/
 
     }
     @Override
