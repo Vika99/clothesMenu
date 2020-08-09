@@ -48,7 +48,7 @@ public abstract class BaseRepository <E extends IEntity> implements Container<E>
 
     @Override
     @SneakyThrows
-    public void add(E element) {
+    public  void  add(E element) {
 
         this.jdbcTemplate.update("insert into complex_clothes (price, size, article, color, type, jeans_t, tshirt_t) values (?,?,?,?,?,?,?)", element);{
               element.getPrice();

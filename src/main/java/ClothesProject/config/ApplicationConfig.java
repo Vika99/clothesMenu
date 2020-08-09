@@ -39,6 +39,9 @@ public class ApplicationConfig {
     @Value("${dbpassword}")
     private String password;
 
+   // @Value("${profile}")
+  //  private  String profile;
+
     @Bean
     @SneakyThrows
     public DataSource dataSource() {
@@ -55,6 +58,7 @@ public JdbcTemplate jdbcTemplate (DataSource dataSource){
     public SpringLiquibase springLiquibase(DataSource ds){
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(ds);
+        //liquibase.setContexts(profile);
         liquibase.setChangeLog("classpath:db/changelog-master.xml");  //где лежат наши скрипты для базы
 
         return liquibase;
